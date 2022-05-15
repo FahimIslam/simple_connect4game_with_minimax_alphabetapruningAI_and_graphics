@@ -125,23 +125,6 @@ def get_valid_locations(board):
 			valid_locations.append(col)
 	return valid_locations
 
-def pick_best_move(board, piece):
-
-	best_score = -10000
-	valid_locations = get_valid_locations(board)
-	best_col = random.choice(valid_locations)
-
-	for col in valid_locations:
-		row = get_next_open_row(board, col)
-		temp_board = board.copy()
-		drop_piece(temp_board, row, col, piece)
-		score = score_position(temp_board, piece)
-		if score > best_score:
-			best_score = score
-			best_col = col
-
-	return best_col
-
 def is_terminal_node(board):
 	return check_for_win(board, PLAYER_PIECE) or check_for_win(board, AI_PIECE) or len(get_valid_locations(board)) == 0
 
